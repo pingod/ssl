@@ -11,7 +11,7 @@ if [ ! -d "out" ]; then
 fi
 
 # Generate root cert along with root key
-openssl req -config ca.cnf \
+openssl req -config openssl.cnf \
     -newkey rsa:2048 -nodes -keyout out/root.key.pem \
     -new -x509 -days 7300 -out out/root.crt \
     -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Fishdrowned/CN=Fishdrowned ROOT CA"

@@ -37,13 +37,13 @@ mkdir -p ${DIR}
 openssl req -new -out "${DIR}/$1.csr.pem" \
     -key out/cert.key.pem \
     -reqexts SAN \
-    -config <(cat ca.cnf \
+    -config <(cat openssl.cnf \
         <(printf "[SAN]\nsubjectAltName=${SAN}")) \
     -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Fishdrowned/OU=$1/CN=*.$1"
 
 # Issue certificate
-# openssl ca -batch -config ./ca.cnf -notext -in "${DIR}/$1.csr.pem" -out "${DIR}/$1.cert.pem"
-openssl ca -config ./ca.cnf -batch -notext \
+# openssl ca -batch -config ./openssl.cnf -notext -in "${DIR}/$1.csr.pem" -out "${DIR}/$1.cert.pem"
+openssl ca -config ./openssl.cnf -batch -notext \
     -in "${DIR}/$1.csr.pem" \
     -out "${DIR}/$1.crt" \
     -cert ./out/root.crt \
